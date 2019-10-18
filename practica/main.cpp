@@ -1,8 +1,6 @@
 #include <iostream>
 
 using namespace std;
-//1
-//iterativo
 
 int tam_cad(char *cadena){
     int tam=0;
@@ -29,12 +27,42 @@ void invertir(char *cad){
     }
 
 }
+void invertir_recursivo(char *ca,int tam,int i=0){
+    char *fin= ca+tam-i;
+    if (i>tam){
+        swap(*ca,*fin);
+        invertir_recursivo(++ca,tam--,++i);
+    }
+}
+bool palindrome(char *caden){
+    char *fin = caden + tam_recur(caden)-1;
+    if (*caden==*fin){
+        return true;
+    }
+    else
+        return false;
+}
+bool palindrome_recursivo(char *cad,int tam,int i=0){
+    char *fin=cad + tam-i;
+    if (fin <= cad){
+        return true;
+    }
+        if(*fin != *cad ){
+            return false;
+    }
+    return true , palindrome_recursivo(++cad,tam--,++i);
+}
 int main(){
-    char cadena[]={'h','o','l','a','\0'};
+    char cadena[]="naiara";
+    int tam=tam_cad(cadena);
     cout << cadena << endl;
     cout << tam_cad(cadena) << endl;
     cout << tam_recur(cadena) << endl;
     invertir(cadena);
-    cout << cadena;
+    cout << cadena << endl;
+    cout << palindrome(cadena)<< endl;
+    invertir_recursivo(cadena,tam);
+    cout << cadena << endl;
+    cout << palindrome_recursivo(cadena,tam) << endl;
     return 0;
 }
