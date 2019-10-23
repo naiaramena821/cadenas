@@ -35,26 +35,30 @@ void invertir_recursivo(char *ca,int tam,int i=0){
     }
 }
 bool palindrome(char *caden){
-    char *fin = caden + tam_recur(caden)-1;
-    if (*caden==*fin){
+    int j=0;
+    char *fin = caden + tam_cad(caden)-1-j;
+    for(j=0;caden<fin;j++){
+        if(*caden != *fin){
+            return false;
+        }
+        else{
         return true;
+        }
     }
-    else
-        return false;
 }
-int palindrome_recursivo(char *cad, int inicio,int fin){
-    if(fin <= inicio ){
-        return true;
+bool palindrome_recursivo(char *cad,int tam,int j=0){
+    char *fin= cad+tam-j;
+    for(j=0;cad<fin;j++){
+    if(*cad!=*fin){
+        return false;
     }
-    if(inicio == fin){
-        return true , palindrome_recursivo(cad,inicio++,fin--);
-    }
-    return false;
+    return true;
+    palindrome_recursivo(++cad,tam--,j++);
+}
 }
 int main(){
-    char cadena[]="rotor";
+    char cadena[]="naiara";
     int tam=tam_cad(cadena)-1;
-    int ini=tam_cad(cadena);
     cout << cadena << endl;
     cout << tam_cad(cadena) << endl;
     cout << tam_recur(cadena) << endl;
@@ -63,6 +67,6 @@ int main(){
     cout << palindrome(cadena)<< endl;
     invertir_recursivo(cadena,tam);
     cout << cadena << endl;
-    cout << palindrome_recursivo(cadena,ini,tam) << endl;
+    cout << palindrome_recursivo(cadena,tam) << endl;
     return 0;
 }
